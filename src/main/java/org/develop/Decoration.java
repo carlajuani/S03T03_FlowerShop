@@ -2,7 +2,7 @@ package org.develop;
 
 public class Decoration extends Product {
 
-    private MaterialType material; //wood or plastic
+    private final MaterialType material;
 
     public Decoration(int ID, String name, int quantity, double price, MaterialType material) {
         super(ID, name, quantity, price, ProductType.DECORATION);
@@ -24,10 +24,6 @@ public class Decoration extends Product {
         return material;
     }
 
-    public void setMaterial(MaterialType material) {
-        this.material = material;
-    }
-
     @Override
     public String toString() {
         return "Decoration{" +
@@ -40,10 +36,9 @@ public class Decoration extends Product {
                 '}';
     }
 
-    public String toString2() {
+    public String storeCatalogtoString() {
         return "Decoration{" +
-                "ID=" + super.getID() +
-                ", ref='" + super.getRef() +
+                "ref='" + super.getRef() +
                 ", name='" + super.getName() +
                 ", material=" + this.material +
                 ", price=" + super.getPrice() +

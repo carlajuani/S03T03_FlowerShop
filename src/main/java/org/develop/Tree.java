@@ -2,13 +2,14 @@ package org.develop;
 
 public class Tree extends Product {
 
-    private float height;
+    private final float height;
 
     public Tree(int ID, String name, int quantity, double price, float height) {
         super(ID, name, quantity, price, ProductType.TREE);
         super.generateReference('T');
         this.height = height;
     }
+
     //Constructor pel mètode JSONArrayToHashMap
     public Tree(int ID, String ref, String name, int quantity, double price, float height) {
         super(ID, ref, name, quantity, price, ProductType.TREE);
@@ -17,10 +18,6 @@ public class Tree extends Product {
 
     public float getHeight() {
         return height;
-    }
-
-    public void setHeight(float height) {
-        this.height = height;
     }
 
     @Override
@@ -35,10 +32,9 @@ public class Tree extends Product {
                 '}';
     }
 
-    public String toString2() {
+    public String storeCatalogtoString() {
         return "Tree{" +
-                "ID=" + super.getID() +
-                ", ref='" + super.getRef() +
+                "ref='" + super.getRef() +
                 ", name='" + super.getName() +
                 ", height=" + this.height +
                 ", price=" + super.getPrice() +

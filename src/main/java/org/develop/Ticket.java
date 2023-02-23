@@ -1,12 +1,11 @@
 package org.develop;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Ticket implements ITicket{
     final int ID;
-    List<TicketLine> ticketLines = new ArrayList<TicketLine>();
+    List<TicketLine> ticketLines = new ArrayList<>();
     double totalPrice = 0;
 
     public Ticket (int ID) {
@@ -23,6 +22,7 @@ public class Ticket implements ITicket{
     public int getID() {
         return ID;
     }
+
     public List<TicketLine> getTicketLines() {
         return ticketLines;
     }
@@ -37,17 +37,18 @@ public class Ticket implements ITicket{
         ticketLines.add(ticketLine);
         calculateTotalPrice();
     }
+
     @Override
     public void calculateTotalPrice() {
         double totalPrice = 0;
         for (TicketLine line : ticketLines) {
             totalPrice += line.getProduct().getPrice()*line.getQuantity();
         }
-        this.totalPrice = (Math.round(totalPrice*100))/100;
+        this.totalPrice = (Math.round(totalPrice*100))/100d;
     }
 
     @Override
     public String toString() {
-        return "Ticket{" + "ID=" + ID + ", ticketLines=" + ticketLines + "\ntotalPrice=" + totalPrice + "€\n}";
+        return "Ticket{ ID=" +ID +ticketLines+ "\ntotalPrice=" +totalPrice+ "€}\n";
     }
 }

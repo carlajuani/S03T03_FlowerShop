@@ -3,6 +3,7 @@ package org.develop;
 public class TicketLine {
     Product product;
     int quantity;
+
     public TicketLine (Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
@@ -18,6 +19,6 @@ public class TicketLine {
 
     @Override
     public String toString() {
-        return "\n{" + "product= " + product.toString2() + ", quantity=" + quantity + "}";
+        return "\n{" + "product= " + product.storeCatalogtoString() + ", quantity=" + quantity + "}";
     }
 }

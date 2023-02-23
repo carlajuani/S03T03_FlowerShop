@@ -1,4 +1,0 @@
-{"reference":"T529","quantity":2,"price":3,"name":"llimoner","ID":2,"type":"TREE","height":4}
-{"reference":"T961","quantity":2,"price":3,"name":"bonsai","ID":3,"type":"TREE","height":4}
-{"reference":"F149","colour":"vermella","quantity":1,"price":3,"name":"rosa","ID":1,"type":"FLOWER"}
-{"reference":"F898","colour":"lila","quantity":12,"price":32,"name":"margarita","ID":1,"type":"FLOWER"}

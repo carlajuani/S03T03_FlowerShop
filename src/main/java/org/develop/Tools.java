@@ -3,18 +3,16 @@ package org.develop;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Tools {
 
-    public static Product.ProductType chooseProductType() {
+    public static Product.ProductType chooseProductType () {
         boolean choose = true;
-        int type = 0;
+        int type;
         Product.ProductType productType = null;
-
         do {
             type = Input.scanningForInt("""
                     Choose the type of the product:
@@ -22,7 +20,6 @@ public class Tools {
                     2. Flower.
                     3. Decoration.
                     Write a number between 1 to 3:""");
-
             switch (type) {
                 case 1 -> productType = Product.ProductType.TREE;
                 case 2 -> productType = Product.ProductType.FLOWER;
@@ -33,22 +30,19 @@ public class Tools {
                 }
             }
         } while (!choose);
-
         return productType;
     }
 
-    public static Decoration.MaterialType chooseMaterialType() {
+    public static Decoration.MaterialType chooseMaterialType () {
         boolean choose = true;
-        int type = 0;
+        int type;
         Decoration.MaterialType materialType = null;
-
         do {
             type = Input.scanningForInt("""
                     Choose the type of the material:
-                    1. Wood. 
+                    1. Wood.
                     2. Plastic.
                     Write a number between 1 or 2:""");
-
             switch (type) {
                 case 1 -> materialType = Decoration.MaterialType.WOOD;
                 case 2 -> materialType = Decoration.MaterialType.PLASTIC;
@@ -58,68 +52,34 @@ public class Tools {
                 }
             }
         } while (!choose);
-
         return materialType;
     }
 
-    public static Product createProduct(String storeName) {
+    public static Product createProduct (String storeName) {
         Product product = null;
         Product.ProductType productType = Tools.chooseProductType();
-        String name = Input.scanningForString("Introduce the name:");
-        int quantity = Input.scanningForInt("Introduce the quantity:");
-        double price = Input.scanningForDouble("Introduce the price:");
+        String name = Input.scanningForString("Introduce name:");
+        int quantity = Input.scanningForInt("Introduce quantity:");
+        double price = Input.scanningForDouble("Introduce price:");
         String trimmedStoreName = storeName.trim().replace(" ","_");
         int ID = Reader.readLastID("Products"+trimmedStoreName+".txt");
+
         if (productType == Product.ProductType.TREE) {
-            float height = Input.scanningForFloat("Introduce the height:");
+            float height = Input.scanningForFloat("Introduce height:");
             product = new Tree(ID, name, quantity, price, height);
-            System.out.println("Product of type tree added correctly.");
         } else if (productType == Product.ProductType.FLOWER) {
-            String colour = Input.scanningForString("Introduce the colour:");
+            String colour = Input.scanningForString("Introduce colour:");
             product = new Flower(ID, name, quantity, price, colour);
-            System.out.println("Product of type flower added correctly.");
         } else if (productType == Product.ProductType.DECORATION) {
             Decoration.MaterialType materialType = Tools.chooseMaterialType();
             product = new Decoration(ID, name, quantity, price, materialType);
-            System.out.println("Product of type decoration added correctly.");
         }
+        System.out.println("Product of type " +productType+ " added correctly.");
         return product;
     }
 
-    //PRODUCTS
-    public static HashMap<String, Product> JSONProductsToHashMap(JSONArray productArrayJSON) {
-        HashMap<String, Product> storeStockFromJSONArray = new HashMap<>();
-        Product product = null;
-        String ref = "";
-
-        for (Object obj: productArrayJSON) {
-            JSONObject object = (JSONObject) obj;
-
-            int ID = object.getInt("ID");
-            ref = object.getString("reference");
-            String name = object.getString("name");
-            int quantity = object.getInt("quantity");
-            double price = object.getDouble("price");
-            Product.ProductType type = Product.ProductType.valueOf(object.getString("type"));
-
-            if (type == Product.ProductType.TREE) {
-                float height = object.getFloat("height");
-                product = new Tree(ID, ref, name, quantity, price, height);
-            } else if (type == Product.ProductType.FLOWER) {
-                String colour = object.getString("colour");
-                product = new Flower(ID, ref, name, quantity, price, colour);
-            } else if (type == Product.ProductType.DECORATION) {
-                Decoration.MaterialType materialType = Decoration.MaterialType.valueOf(object.getString("material"));
-                product = new Decoration(ID, ref, name, quantity, price, materialType);
-            }
-            storeStockFromJSONArray.put(ref, product);
-        }
-        return storeStockFromJSONArray;
-
-    }
-
     //PRODUCT
-    public static Product JSONProductToProduct(JSONObject productJSON) {
+    public static Product JSONProductToProduct (JSONObject productJSON) {
         Product product = null;
         int ID = productJSON.getInt("ID");
         String ref = productJSON.getString("ref");
@@ -138,13 +98,42 @@ public class Tools {
             Decoration.MaterialType materialType = Decoration.MaterialType.valueOf(productJSON.getString("material"));
             product = new Decoration(ID, ref, name, quantity, price, materialType);
         }
-
         return product;
     }
 
+    //PRODUCTS
+    public static HashMap<String,Product> JSONProductsToHashMap (JSONArray storeStockJSON) {
+        HashMap<String,Product> storeStock = new HashMap<>();
+        Product product = null;
+        String ref;
+
+        for (Object obj: storeStockJSON) {
+            JSONObject object = (JSONObject) obj;
+            int ID = object.getInt("ID");
+            ref = object.getString("reference");
+            String name = object.getString("name");
+            int quantity = object.getInt("quantity");
+            double price = object.getDouble("price");
+            Product.ProductType type = Product.ProductType.valueOf(object.getString("type"));
+
+            if (type == Product.ProductType.TREE) {
+                float height = object.getFloat("height");
+                product = new Tree(ID, ref, name, quantity, price, height);
+            } else if (type == Product.ProductType.FLOWER) {
+                String colour = object.getString("colour");
+                product = new Flower(ID, ref, name, quantity, price, colour);
+            } else if (type == Product.ProductType.DECORATION) {
+                Decoration.MaterialType materialType = Decoration.MaterialType.valueOf(object.getString("material"));
+                product = new Decoration(ID, ref, name, quantity, price, materialType);
+            }
+            storeStock.put(ref, product);
+        }
+        return storeStock;
+    }
+
     //TICKETS
-    public static HashMap<Integer, ITicket> JSONTicketsToHashMap(JSONArray ticketArrayJSON) {
-        HashMap<Integer, ITicket> salesHistoryFromJSONArray = new HashMap<>();
+    public static HashMap<Integer,ITicket> JSONTicketsToHashMap (JSONArray ticketArrayJSON) {
+        HashMap<Integer,ITicket> salesHistory = new HashMap<>();
         //estem recuperant tots els tickets en un hashmap salesHistory
         for (Object ticket: ticketArrayJSON) {
             JSONObject object = (JSONObject) ticket;
@@ -162,12 +151,12 @@ public class Tools {
             double totalPrice = object.getDouble("totalPrice");
             //una vegada recuperats id, array de lines i el preu fem nou ticket i l'afegim al HashMap de tickets
             Ticket newTicket = new Ticket(ID, tLines, totalPrice);
-            salesHistoryFromJSONArray.put(ID, newTicket);
+            salesHistory.put(ID, newTicket);
             }
-        return salesHistoryFromJSONArray;
+        return salesHistory;
     }
 
-    public static void showStockValue(HashMap<String, Product> storeStock) {
+    public static void showStockValue (HashMap<String,Product> storeStock) {
         double stockValue = 0;
         for (Product product : storeStock.values()) {
             stockValue += product.getQuantity()*product.getPrice();
@@ -175,33 +164,11 @@ public class Tools {
         System.out.println("TOTAL stock value:" +stockValue+ "€\n");
     }
 
-    public static void showTicketValueFromJSON(HashMap<Integer, ITicket> salesHistoryFromJSONArray) {
-        double ticketsValues = 0;
-        for (ITicket ticket : salesHistoryFromJSONArray.values()) {
-            ticketsValues += ((Ticket) ticket).getTotalPrice();
+    public static void showSalesValue (HashMap<Integer,ITicket> salesHistory) {
+        double salesValue = 0;
+        for (ITicket ticket : salesHistory.values()) {
+            salesValue += ((Ticket) ticket).getTotalPrice();
         }
-        System.out.println("Store's TOTAL sales: " +ticketsValues+ "€\n");
+        System.out.println("Store's TOTAL sales: " +salesValue+ "€\n");
     }
-
-    public static boolean checkExistingStore (String storeName) {
-        String storeNameTrimmed = storeName.trim().replace(" ","_");
-        boolean found = false;
-        try {
-            File fileToCheck = new File("src/main/resources/Stores.txt");
-            BufferedReader br = new BufferedReader(new FileReader(fileToCheck));
-            String line = br.readLine();
-            while ((line != null) && !found) {
-                if(line.contains(storeNameTrimmed)) {
-                    found = true;
-                }
-                line = br.readLine();
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return found;
-    }
-
 }

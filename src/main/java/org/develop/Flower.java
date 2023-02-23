@@ -2,7 +2,7 @@ package org.develop;
 
 public class Flower extends Product {
 
-    private String colour;
+    private final String colour;
 
     public Flower(int ID, String name, int quantity, double price, String colour) {
         super(ID, name, quantity, price, ProductType.FLOWER);
@@ -20,10 +20,6 @@ public class Flower extends Product {
         return colour;
     }
 
-    public void setColour(String colour) {
-        this.colour = colour;
-    }
-
     @Override
     public String toString() {
         return "Flower{" +
@@ -36,10 +32,9 @@ public class Flower extends Product {
                 '}';
     }
 
-    public String toString2() {
+    public String storeCatalogtoString() {
         return "Flower{" +
-                "ID=" + super.getID() +
-                ", ref='" + super.getRef() +
+                "ref='" + super.getRef() +
                 ", name='" + super.getName() +
                 ", colour=" + this.colour +
                 ", price=" + super.getPrice() +
