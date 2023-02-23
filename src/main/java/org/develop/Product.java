@@ -3,10 +3,10 @@ package org.develop;
 public class Product {
     private final int ID;
     private String ref;
-    private String name;
+    private final String name;
     private int quantity;
-    private double price;
-    private ProductType productType;
+    private final double price;
+    private final ProductType productType;
 
 
     public Product(int ID, String name, int quantity, double price, ProductType productType) {
@@ -43,32 +43,20 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public ProductType getProductType() {
         return productType;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void generateReference(char type) {
@@ -79,10 +67,6 @@ public class Product {
             ref += numToAdd;
         }
         this.ref = ref;
-    }
-
-    public void addQuantity(int quantity) {
-        this.quantity += quantity;
     }
 
     public void sellQuantity(int quantity) {
@@ -99,11 +83,12 @@ public class Product {
                 ", price=" + price +
                 '}';
     }
-    public String toString2() {
+
+    public String storeCatalogtoString() {
         return "";
     }
 
-    public String toString3() {
+    public String stockQuantitytoString() {
         return productType+"{" +
                 "ref='" + ref +
                 ", name='" + name +

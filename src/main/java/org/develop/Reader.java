@@ -3,79 +3,94 @@ package org.develop;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Reader {
 
+    //STORE
+    public static boolean checkExistingStore (String storeName) {
+        String storeNameTrimmed = storeName.trim().replace(" ","_");
+        boolean found = false;
+        try {
+            File fileToCheck = new File("src/main/resources/Stores.txt");
+            BufferedReader br = new BufferedReader(new FileReader(fileToCheck));
+            String line = br.readLine();
+            if (fileToCheck.exists()) {
+                while ((line != null) && !found) {
+                    if(line.contains(storeNameTrimmed)) {
+                        found = true;
+                    }
+                    line = br.readLine();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("ERROR. Can't open file.");
+        }
+        return found;
+    }
+
+    //PRODUCT ID
     public static int readLastID (String fileName) {
         int lastID = 1;
         Scanner scanner;
-        String line = "";
         try {
-            //BufferedReader bReader = new BufferedReader (new FileReader("src/main/resources/" +fileName));
-            scanner = new Scanner(new File("src/main/resources/" +fileName));
-            while (scanner.hasNext()) {
-                line = scanner.next();
+            File file = new File("src/main/resources/" +fileName);
+            scanner = new Scanner(file);
+            String line = "";
+            if (scanner.hasNext()) {
+                while (scanner.hasNext()) {
+                    line = scanner.next();
+                }
+                JSONObject ticketLineJSON = new JSONObject(line);
+                lastID += ticketLineJSON.getInt("ID");
             }
-            JSONObject JSONLine = new JSONObject(line);
-            lastID += JSONLine.getInt("ID");
             scanner.close();
-            System.out.println("Last ID successfully retrieved");
         } catch (Exception e) {
-            System.out.println("Can't open file");
+            System.out.println("ERROR. Can't open file.");
         }
         return lastID;
     }
 
     //PRODUCTS
-    public static JSONArray readProductsJSON(String storeName) {
+    public static JSONArray readProductsJSON (String storeName) {
         String storeNameTrimmed = storeName.trim().replace(" ","_");
-        JSONArray productArrayJSON = new JSONArray();
-        String line = "";
+        JSONArray storeStockJSON = new JSONArray();
+        String line;
         try {
             File file = new File("src/main/resources/Products"+storeNameTrimmed+".txt");
-            FileReader reader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            line = bufferedReader.readLine();
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            line = br.readLine();
             while (line != null) {
-                JSONObject object = new JSONObject(line);
-                productArrayJSON.put(object);
-                line = bufferedReader.readLine();
+                JSONObject productJSON = new JSONObject(line);
+                storeStockJSON.put(productJSON);
+                line = br.readLine();
             }
-            bufferedReader.close();
-            System.out.println("File successfully read.");
+            br.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("ERROR. Can't open file.");
         }
-
-        return productArrayJSON;
+        return storeStockJSON;
     }
 
     //TICKETS
-    public static JSONArray readTicketsJSON(String storeName) {
+    public static JSONArray readTicketsJSON (String storeName) {
         String storeNameTrimmed = storeName.trim().replace(" ","_");
-        JSONArray ticketArrayJSON = new JSONArray();
-        String line = "";
+        JSONArray salesHistoryJSON = new JSONArray();
+        String line;
         try {
             File file = new File("src/main/resources/Tickets" + storeNameTrimmed + ".txt");
-            FileReader reader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            line = bufferedReader.readLine();
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            line = br.readLine();
             while (line != null) {
-                JSONObject object = new JSONObject(line);
-                ticketArrayJSON.put(object);
-                line = bufferedReader.readLine();
+                JSONObject ticketJSON = new JSONObject(line);
+                salesHistoryJSON.put(ticketJSON);
+                line = br.readLine();
             }
-            bufferedReader.close();
-            System.out.println("File successfully read.");
+            br.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("ERROR. Can't open file.");
         }
-
-        return ticketArrayJSON;
+        return salesHistoryJSON;
     }
 }

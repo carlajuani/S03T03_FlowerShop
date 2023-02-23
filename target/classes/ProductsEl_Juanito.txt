@@ -1,2 +1,0 @@
-{"reference":"D847","quantity":3,"material":"PLASTIC","price":4,"name":"garlanda","ID":1,"type":"DECORATION"}
-{"reference":"F713","colour":"rosa","quantity":2,"price":3,"name":"peonia","ID":1,"type":"FLOWER"}
