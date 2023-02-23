@@ -4,3 +4,6 @@
 {"reference":"D1810","quantity":2,"material":"PLASTIC","price":3,"name":"milos","ID":1,"type":"DECORATION"}
 {"reference":"F9101","colour":"swsdcs ","quantity":3,"price":2,"name":"asdfsg","ID":2,"type":"FLOWER"}
 {"reference":"F311","colour":"red","quantity":3,"price":4,"name":"aslgd","ID":1,"type":"FLOWER"}
+{"reference":"D6108","quantity":3,"material":"PLASTIC","price":55,"name":"PIcture","ID":4,"type":"DECORATION"}
+{"reference":"F1610","colour":"red","quantity":3,"price":4,"name":"Rosa","ID":5,"type":"FLOWER"}
+{"reference":"F1092","colour":"yellow","quantity":4,"price":5,"name":"Rosa","ID":6,"type":"FLOWER"}

@@ -1,0 +1,1 @@
+{"totalPrice":656,"ID":1,"ticketLines":[{"product":{"ref":"D9610","quantity":4,"material":"WOOD","price":44,"name":"Chair","ID":2,"productType":"DECORATION"},"quantity":4},{"product":{"ref":"D966","quantity":1,"material":"PLASTIC","price":120,"name":"Table","ID":3,"productType":"DECORATION"},"quantity":4}]}
