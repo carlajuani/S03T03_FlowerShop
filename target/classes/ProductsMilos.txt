@@ -1,8 +1,0 @@
-{"reference":"F992","colour":"rosa","quantity":2,"price":3,"name":"Carloa","ID":1,"type":"FLOWER"}
-{"reference":"F441","colour":"rosa","quantity":2,"price":3,"name":"Montse","ID":1,"type":"FLOWER"}
-{"reference":"F1099","colour":"red","quantity":3,"price":4,"name":"Carla","ID":1,"type":"FLOWER"}
-{"reference":"D1810","quantity":2,"material":"PLASTIC","price":3,"name":"milos","ID":1,"type":"DECORATION"}
-{"reference":"F9101","colour":"swsdcs ","quantity":3,"price":2,"name":"asdfsg","ID":2,"type":"FLOWER"}
-{"reference":"F311","colour":"red","quantity":3,"price":4,"name":"aslgd","ID":1,"type":"FLOWER"}
-{"reference":"D9610","quantity":4,"material":"WOOD","price":44,"name":"Chair","ID":2,"type":"DECORATION"}
-{"reference":"D966","quantity":5,"material":"PLASTIC","price":120,"name":"Table","ID":3,"type":"DECORATION"}

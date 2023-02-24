@@ -1,0 +1,2 @@
+{"reference":"T742","quantity":45,"price":13,"name":"Pomer","ID":1,"type":"TREE","height":2.1}
+{"reference":"F922","colour":"Lila","quantity":34,"price":4.7,"name":"Tulipa","ID":2,"type":"FLOWER"}
