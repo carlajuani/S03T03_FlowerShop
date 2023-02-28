@@ -46,7 +46,7 @@ public class Store {
         ITicket saleTicket = new Ticket(ID);
         boolean saleCompleted = false;
         while (!saleCompleted) {
-            String ref = Input.scanningForString("Please indicate product reference:");
+            String ref = Input.scanningForString("Please indicate the product's reference:");
             if (storeStock.containsKey(ref)) {
                 Product product = storeStock.get(ref);
                 int quantity = Input.scanningForInt("Please indicate quantity:");
