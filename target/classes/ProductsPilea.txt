@@ -1,5 +1,5 @@
-{"reference":"T321","quantity":46,"price":12,"name":"Bonsai","ID":1,"type":"TREE","height":1.5}
-{"reference":"F1037","colour":"Vermell","quantity":35,"price":2.4,"name":"Rosa","ID":2,"type":"FLOWER"}
 {"reference":"T285","quantity":7,"price":12,"name":"Llimoner","ID":3,"type":"TREE","height":2.4}
-{"reference":"D1210","quantity":15,"material":"WOOD","price":32,"name":"Cadira","ID":4,"type":"DECORATION"}
-{"reference":"D1083","quantity":56,"material":"PLASTIC","price":47,"name":"Taula","ID":5,"type":"DECORATION"}
+{"reference":"T321","quantity":43,"price":12,"name":"Bonsai","ID":1,"type":"TREE","height":1.5}
+{"reference":"D1083","quantity":55,"material":"PLASTIC","price":47,"name":"Taula","ID":5,"type":"DECORATION"}
+{"reference":"F1037","colour":"Vermell","quantity":33,"price":2.4,"name":"Rosa","ID":2,"type":"FLOWER"}
+{"reference":"D1210","quantity":10,"material":"WOOD","price":32,"name":"Cadira","ID":4,"type":"DECORATION"}
