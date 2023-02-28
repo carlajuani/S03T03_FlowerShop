@@ -33,7 +33,6 @@ public class Store {
     public void purchaseSale() {
         String trimmedStoreName = storeName.trim().replace(" ","_");
         int ID = Reader.readLastID("Tickets"+trimmedStoreName+".txt");
-        System.out.println(trimmedStoreName);
         ITicket saleTicket = new Ticket(ID);
         boolean saleCompleted = false;
         while (!saleCompleted) {
