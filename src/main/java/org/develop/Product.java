@@ -1,5 +1,9 @@
 package org.develop;
 
+/**
+ * Superclass of Tree, Flower and Decoration.
+ * Has as attributes a unique ID number, a reference of the product, the name, the quantity, the price and the type of product.
+ */
 public class Product {
     private final int ID;
     private String ref;
@@ -8,7 +12,9 @@ public class Product {
     private final double price;
     private final ProductType productType;
 
-
+    /**
+     * Constructor used to create a new product added to the store.
+     */
     public Product(int ID, String name, int quantity, double price, ProductType productType) {
         this.ID = ID;
         this.name = name;
@@ -17,7 +23,9 @@ public class Product {
         this.productType = productType;
     }
 
-    //Constructor pel mètode JSONArrayToHashMap
+    /**
+     * Constructor overloading. Used to initialize products in method JSONProductsToHashMap().
+     */
     public Product(int ID, String ref, String name, int quantity, double price, ProductType productType) {
         this.ID = ID;
         this.ref = ref;
@@ -27,6 +35,9 @@ public class Product {
         this.productType = productType;
     }
 
+    /**
+     * Enum to indicate the three unchangeable type of products.
+     */
     public enum ProductType {
         TREE, FLOWER, DECORATION
     }
@@ -59,6 +70,11 @@ public class Product {
         this.quantity = quantity;
     }
 
+    /**
+     * Generates an aleatory reference consisting of a single character followed by three random digits.
+     * @param type To indicate the type of product (T, F or D).
+     *
+     */
     public void generateReference(char type) {
         String ref = String.valueOf(type);
         for (int i = 0; i < 3 ; i++) {
@@ -69,10 +85,17 @@ public class Product {
         this.ref = ref;
     }
 
+    /**
+     * Updates the quantity of products by subtracting the specified quantity from it.
+     * @param quantity To indicate the quantity of products to sell.
+     */
     public void sellQuantity(int quantity) {
         this.quantity -= quantity;
     }
 
+    /**
+     * ToString used to print a product with all its attributes.
+     */
     @Override
     public String toString() {
         return productType+"{" +
@@ -84,10 +107,16 @@ public class Product {
                 '}';
     }
 
+    /**
+     * ToString used in Tree, Flower and Decoration class, to print the specified product in method printCatalog().
+     */
     public String storeCatalogtoString() {
         return "";
     }
 
+    /**
+     * ToString used to print a product in method printStockQuantity().
+     */
     public String stockQuantitytoString() {
         return productType+"{" +
                 "ref='" + ref +

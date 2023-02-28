@@ -3,6 +3,10 @@ package org.develop;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Provides methods to read input from the console.
+ * It includes methods to read integer, float, double, and string values with error handling for incorrect input types.
+ */
     public class Input {
 
         static Scanner setInput = new Scanner(System.in);

@@ -1,6 +1,10 @@
 package org.develop;
 
 public class Main {
+    /**
+     * The FlowerShop application. Displays a menu to the user with several options to manage a flower shop.
+     * Each option corresponds to a method in the MethodsMenu class.
+     */
     public static void main(String[] args) {
         int menu;
         do {

@@ -1,0 +1,1 @@
+{"totalPrice":49.5,"ID":1,"ticketLines":[{"product":{"ref":"T742","quantity":43,"price":13,"name":"Pomer","ID":1,"productType":"TREE","height":2.1},"quantity":2},{"product":{"colour":"Lila","ref":"F922","quantity":29,"price":4.7,"name":"Tulipa","ID":2,"productType":"FLOWER"},"quantity":5}]}
