@@ -2,11 +2,18 @@ package org.develop;
 
 import java.util.HashMap;
 
+/**
+ * Represents a store that sells products.
+ * As an attributes has the store name and the stock of products available for sale.
+ */
 public class Store {
     
     private final String storeName;
     private HashMap<String,Product> storeStock = new HashMap<>();
-    
+
+    /**
+     * Constructor used to create a new store with the specified name added to the file.
+     */
     public Store (String storeName) {
         this.storeName = storeName;
     }
@@ -19,17 +26,20 @@ public class Store {
         this.storeStock = storeStock;
     }
 
-    /*aquest metode es complex, he intentat abarcar tots els escenaris de compra de producte,
-    i inicialment demano les ref, sino podem canviarho.
-    Faig ticket nou i entro a bucle compra. alla pregunto referencia del producte.
-    Primera opcio, el tenim. Llavors preguntem quantitat.
-        Primera opcio, en tenim de sobres:reduïm quantity de producte
-        Segona opcio, en tenim just el que demana:eliminem tot el producte(perque es quedaria a 0quantity ergo no el tenim)
-        tercera opcio, no en tenim suficient, se li demana si vol la quantitat que queda, si es que si, eliminem producte igual que anterior
-    Segona opcio, no el tenim, i avisem per pantalla
-    Una vegada afegit el producte al ticket, demanem si es vol seguir amb el següent producte
-        Primera opcio NO, doncs imprimim ticket i sortim del bucle
-        Sino, comencem el bucle de nou demanant un nou producte*/
+    /**
+     * Allows a customer to purchase products from the store.
+     * Creates a new ticket and updates the store stock and sales records accordingly.
+     * The customer is prompted to input a product reference. If the store has it in stock,
+     * is prompted to indicate a quantity. Depending on the quantity of the product in stock,
+     * one of three options can occur:
+     * 1. If there is enough product in stock, the quantity sold is subtracted from the product's quantity.
+     * 2. If the store has just the quantity requested by the customer, the product is removed from the store stock.
+     * 3. If there is not enough product in stock, the customer is prompted to see if they would like to purchase the remaining stock.
+     * If the customer agrees, the remaining stock is sold and the product is removed from the store stock. If not,
+     * the sale of the product is canceled.
+     * After a product and its quantity are added to the sale ticket, the customer is prompted to indicate whether they would like
+     * to add another product to the sale. If not, the sale ticket is printed and saved into a file, and the sale is marked as completed.
+     */
     public void purchaseSale() {
         String trimmedStoreName = storeName.trim().replace(" ","_");
         int ID = Reader.readLastID("Tickets"+trimmedStoreName+".txt");
@@ -43,7 +53,7 @@ public class Store {
                 if (product.getQuantity() > quantity) {
                     product.sellQuantity(quantity);
                     saleTicket.addTicketLine(product, quantity);
-                    Writer.updateJSONProduct(product, this.storeName);
+                    Writer.updateProductJSON(product, this.storeName);
                 } else if (product.getQuantity() == quantity){
                     storeStock.remove(ref);
                     System.out.println("Lucky you! Last ones on stock!");
@@ -62,7 +72,6 @@ public class Store {
             } else {
                 System.out.println("Sorry, this product is not currently available.");
             }
-            //Aqui demanem si es vol afegir un altre producte, si es que no, imprimim ticket i sortim del bucle de compra
             String nextSale = Input.scanningForString("Would you like to add anything else to your sale?");
             if (nextSale.equalsIgnoreCase("no")) {
                 System.out.print(saleTicket);

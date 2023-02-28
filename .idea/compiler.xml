@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="S03T03_FlowerShop" />
         <module name="S03T03_Floristeria" />
       </profile>
     </annotationProcessing>

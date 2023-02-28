@@ -1,4 +1,4 @@
-# Tasca_s3_03
+# S03T03_FlowerShop
 #### Developers Team
 
 ## Nivell 1
@@ -51,13 +51,9 @@ Quant a les funcionalitats del Main, com a mínim, ha d’incloure les següents
 
 - Visualitzar el total de diners guanyats amb totes les vendes.
 
-## Nivell 2
 
-Utilitza com a persistència MySQL.
+![img.png](diagram_flowershop.png)
 
-## Nivell 3
-
-Usa com a persistència MongoDB.
 
 
 

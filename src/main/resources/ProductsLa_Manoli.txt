@@ -1,0 +1,4 @@
+{"reference":"F879","colour":"Rosa","quantity":55,"price":9,"name":"Peonia","ID":2,"type":"FLOWER"}
+{"reference":"F922","colour":"Groc","quantity":40,"price":4.5,"name":"Margarita","ID":1,"type":"FLOWER"}
+{"reference":"D7104","quantity":28,"material":"PLASTIC","price":3,"name":"Garnalda","ID":3,"type":"DECORATION"}
+{"reference":"F987","colour":"Blanc","quantity":8,"price":12,"name":"Orquidea","ID":4,"type":"FLOWER"}

@@ -8,7 +8,12 @@ import java.util.Scanner;
 
 public class Reader {
 
-    //STORE
+    /**
+     * This method checks if a store with the given name already exists in the Stores.txt file.
+     * It trims and replaces whitespaces in the store name before checking.
+     * @param storeName A String representing the name of the store to check for.
+     * @return True if the store exists in the file, false otherwise.
+     */
     public static boolean checkExistingStore (String storeName) {
         String storeNameTrimmed = storeName.trim().replace(" ","_");
         boolean found = false;
@@ -24,13 +29,18 @@ public class Reader {
                     line = br.readLine();
                 }
             }
+            br.close();
         } catch (IOException e) {
             System.out.println("ERROR. Can't open file.");
         }
         return found;
     }
 
-    //PRODUCT ID
+    /**
+     * Reads the last used ID from a given file and returns the next ID to use.
+     * @param fileName The name of the file to read from.
+     * @return The next ID to use.
+     */
     public static int readLastID (String fileName) {
         int lastID = 1;
         Scanner scanner;
@@ -52,7 +62,11 @@ public class Reader {
         return lastID;
     }
 
-    //PRODUCTS
+    /**
+     * Reads a file containing products for a specific store and returns it as a JSONArray.
+     * @param storeName The name of the store to read products from.
+     * @return A JSONArray containing the products in the store's stock.
+     */
     public static JSONArray readProductsJSON (String storeName) {
         String storeNameTrimmed = storeName.trim().replace(" ","_");
         JSONArray storeStockJSON = new JSONArray();
@@ -73,7 +87,12 @@ public class Reader {
         return storeStockJSON;
     }
 
-    //TICKETS
+    /**
+     * Reads and parses the JSON data of all the sales tickets stored in a file for a specific store,
+     * and returns them as a JSONArray.
+     * @param storeName The name of the store for which to retrieve the sales tickets.
+     * @return A JSONArray containing the JSON data of all the sales tickets for the specified store.
+     */
     public static JSONArray readTicketsJSON (String storeName) {
         String storeNameTrimmed = storeName.trim().replace(" ","_");
         JSONArray salesHistoryJSON = new JSONArray();
